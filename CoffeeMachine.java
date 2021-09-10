@@ -19,7 +19,6 @@ public class CoffeeMachine {
                     break;
                 case "take":
                     actions.take();
-                    actions.money = 0;
                     break;
                 case "remaining":
                     actions.remaining();

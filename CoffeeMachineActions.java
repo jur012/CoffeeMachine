@@ -9,33 +9,42 @@ public class CoffeeMachineActions {
     private int milk = 540;
     private int coffeeBeans = 120;
     private int cups = 9;
-    public int money = 550;
+    private int money = 550;
 
     public void buy(String coffeeNumber) {
-        String coffeeType = "";
 
         if (Objects.equals(coffeeNumber, "back")) {
             return;
         }
 
-        if (Objects.equals(coffeeNumber, "1") && water >= 250 && coffeeBeans >= 16 && cups >= 1) {
-            coffeeType = "ESPRESSO";
-        } else if (Objects.equals(coffeeNumber, "2") && water >= 350 && coffeeBeans >= 20 && milk >= 75 && cups >= 1) {
-            coffeeType = "LATTE";
-        } else if (Objects.equals(coffeeNumber, "3") && water >= 200 && coffeeBeans >= 12 && milk >= 100 && cups >= 1) {
-            coffeeType = "CAPPUCCINO";
+        String coffeeType = "";
+
+        switch (coffeeNumber) {
+            case "1":
+                coffeeType = "ESPRESSO";
+                break;
+            case "2":
+                coffeeType = "LATTE";
+                break;
+            case "3":
+                coffeeType = "CAPPUCCINO";
+                break;
+        }
+
+        if (water >= Ingredients.valueOf(coffeeType).getWater() && coffeeBeans >= Ingredients.valueOf(coffeeType).getCoffeeBeans()
+                && milk >= Ingredients.valueOf(coffeeType).getMilk() && cups >= Ingredients.valueOf(coffeeType).getCups()) {
+
+            water -= Ingredients.valueOf(coffeeType).getWater();
+            coffeeBeans -= Ingredients.valueOf(coffeeType).getCoffeeBeans();
+            milk -= Ingredients.valueOf(coffeeType).getMilk();
+            cups -= Ingredients.valueOf(coffeeType).getCups();
+            money += Ingredients.valueOf(coffeeType).getMoney();
+
+            System.out.println("I have enough resources, making you a coffee!");
         } else {
             System.out.println("Can't make a cup of coffee.");
             return;
         }
-
-        water -= Ingredients.valueOf(coffeeType).getWater();
-        coffeeBeans -= Ingredients.valueOf(coffeeType).getCoffeeBeans();
-        milk -= Ingredients.valueOf(coffeeType).getMilk();
-        cups -= Ingredients.valueOf(coffeeType).getCups();
-        money += Ingredients.valueOf(coffeeType).getMoney();
-
-        System.out.println("I have enough resources, making you a coffee!");
     }
 
     public void fill() {
@@ -54,6 +63,7 @@ public class CoffeeMachineActions {
 
     public void take() {
         System.out.printf("I gave you $%d\n", money);
+        money = 0;
     }
 
     public void remaining() {
