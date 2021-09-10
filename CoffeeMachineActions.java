@@ -11,8 +11,9 @@ public class CoffeeMachineActions {
     private int cups = 9;
     private int money = 550;
 
-    public void buy(String coffeeNumber) {
-
+    public void buy() {
+        System.out.println("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, back - to main menu:");
+        String coffeeNumber = scanner.next();
         if (Objects.equals(coffeeNumber, "back")) {
             return;
         }
