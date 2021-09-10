@@ -11,8 +11,7 @@ public class CoffeeMachine {
             System.out.println("Write action (buy, fill, take, remaining, exit):");
             switch (scanner.next()) {
                 case "buy":
-                    System.out.println("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, back - to main menu:");
-                    actions.buy(scanner.next());
+                    actions.buy();
                     break;
                 case "fill":
                     actions.fill();
