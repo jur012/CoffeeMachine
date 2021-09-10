@@ -32,14 +32,15 @@ public class CoffeeMachineActions {
                 break;
         }
 
-        if (water >= Ingredients.valueOf(coffeeType).getWater() && coffeeBeans >= Ingredients.valueOf(coffeeType).getCoffeeBeans()
-                && milk >= Ingredients.valueOf(coffeeType).getMilk() && cups >= Ingredients.valueOf(coffeeType).getCups()) {
+        Ingredients ingredient = Ingredients.valueOf(coffeeType);
+        if (water >= ingredient.getWater() && coffeeBeans >= ingredient.getCoffeeBeans()
+                && milk >= ingredient.getMilk() && cups >= ingredient.getCups()) {
 
-            water -= Ingredients.valueOf(coffeeType).getWater();
-            coffeeBeans -= Ingredients.valueOf(coffeeType).getCoffeeBeans();
-            milk -= Ingredients.valueOf(coffeeType).getMilk();
-            cups -= Ingredients.valueOf(coffeeType).getCups();
-            money += Ingredients.valueOf(coffeeType).getMoney();
+            water -= ingredient.getWater();
+            coffeeBeans -= ingredient.getCoffeeBeans();
+            milk -= ingredient.getMilk();
+            cups -= ingredient.getCups();
+            money += ingredient.getMoney();
 
             System.out.println("I have enough resources, making you a coffee!");
         } else {
